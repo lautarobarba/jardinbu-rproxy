@@ -1,0 +1,26 @@
+version: "3.8"
+name: ${CONTAINER_NAME}
+services:
+  prod:
+    container_name: ${CONTAINER_NAME}
+    image: ${CONTAINER_NAME}:1.0.0
+    build:
+      context: .
+      target: development
+      dockerfile: ./Dockerfile
+    mem_limit: 4000m
+    cpus: 4
+    working_dir: /usr/share/nginx/html
+    command: bash -c "(nginx -g 'daemon off;' &) && touch /var/log/nginx/service-error.log && tail -f /var/log/nginx/service-error.log"
+    env_file: .env
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./html:/usr/share/nginx/html
+      - ./nginx.conf:/etc/nginx/sites-available/default
+      # - ./nginx/service-error.log:/vr/log/nginx/service-error.log
+      - ./nginx/letsencrypt:/etc/letsencrypt
+    extra_hosts:
+      - host.docker.internal:host-gateway
