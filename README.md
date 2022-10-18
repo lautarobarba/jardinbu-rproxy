@@ -1,4 +1,12 @@
-# Reverse proxy Container
+# Reverse proxy para el Jardín Botánico De Ushuaia
+
+## Tecnologías
+
+**Proyecto Nginx**
+
+### Librerias y otros
+
+- Nginx
 
 ## Dependencias
 
@@ -11,6 +19,7 @@ Los puertos 80 y 443 deben estar libres.
 Definir las redirecciones en el archivo nginx.conf utilizando la siguiente plantilla.
 
 Nota: _host.docker.internal_ es un alias al host que está corriendo el contenedor del reverse proxy.
+
 ```
 upstream sitio_ejemplo_uno {
     server host.docker.internal:8000;

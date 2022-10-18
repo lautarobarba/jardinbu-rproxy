@@ -1,5 +1,5 @@
 version: "3.8"
-name: ${CONTAINER_NAME}
+name: jardin_rproxy
 services:
   prod:
     container_name: ${CONTAINER_NAME}
